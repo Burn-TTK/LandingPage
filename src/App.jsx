@@ -8,7 +8,6 @@ import Footer from "./components/Footer";
 function App() {
   return (
     <Page>
-      <IU>똥</IU>
       <Hooking/>
       <Information/>
       <Survey/>
