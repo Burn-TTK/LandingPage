@@ -7,16 +7,37 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
+# Node.js 관련
+node_modules/
+dist/
+dist-ssr/
 *.local
 
-# Editor directories and files
+# 환경설정 & 민감정보
+.env
+*.env
+
+# Python 가상환경 및 캐시 (필요 시)
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+
+# 실행파일, 바이너리, 시스템 파일
+*.exe
+*.zip
+*.sqlite3
+.DS_Store
+Thumbs.db
+
+# VSCode 설정
 .vscode/*
 !.vscode/extensions.json
-.idea
-.DS_Store
+# 필요 시:
+#!.vscode/settings.json
+
+# JetBrains & Visual Studio
+.idea/
 *.suo
 *.ntvs*
 *.njsproj
