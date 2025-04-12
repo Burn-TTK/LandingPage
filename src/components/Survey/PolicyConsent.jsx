@@ -1,10 +1,17 @@
+// PolicyConsent.jsx - 개인정보 수집 동의 및 상세 안내 컴포넌트
 import React from "react";
 import styled from "styled-components";
 
-const PolicyConsent = ({ isOpen, setIsOpen }) => (
+
+const PolicyConsent = ({ isOpen, setIsOpen, isAgreed, setIsAgreed }) => (
     <Container>
         <CheckboxWrapper>
-            <Checkbox type="checkbox" required />
+            <Checkbox
+                type="checkbox"
+                checked={isAgreed}
+                onChange={(e) => setIsAgreed(e.target.checked)} // ✅ 연결
+                required
+            />
             <ConsentText>
                 위 내용을 확인하였으며 개인정보 수집 및 이용에 동의합니다.
             </ConsentText>
@@ -27,8 +34,10 @@ const PolicyConsent = ({ isOpen, setIsOpen }) => (
     </Container>
 );
 
+
 export default PolicyConsent;
 
+// 전체 컨테이너
 const Container = styled.div`
     max-width: 36rem;
     margin-top: 10px;
@@ -36,6 +45,7 @@ const Container = styled.div`
     color: #374151;
 `;
 
+// 체크박스와 텍스트 정렬
 const CheckboxWrapper = styled.div`
     display: flex;
     align-items: flex-start;
@@ -48,6 +58,7 @@ const Checkbox = styled.input`
 
 const ConsentText = styled.span``;
 
+// [자세히 보기] 버튼
 const ToggleButton = styled.button`
     margin-left: 1.5rem;
     color: #2563eb;
@@ -57,6 +68,7 @@ const ToggleButton = styled.button`
     cursor: pointer;
 `;
 
+// 상세 내용 컨테이너
 const PolicyDetail = styled.div`
     margin-left: 1.5rem;
     background-color: #f9fafb;
