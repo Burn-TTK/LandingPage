@@ -14,7 +14,7 @@ const pulse = keyframes`
 `;
 
 const Hooking = () => {
-  // 버튼 클릭 시 Survey 섹션으로 스크롤 이동하는 함수
+  // 버튼 클릭 시 Survey 섹션으로 스크롤 이동하는 함수 -> survey 컴포넌트 id 설정 필요
   const scrollToSurvey = () => {
     const surveySection = document.getElementById("surveySection");
     if (surveySection) {
@@ -42,6 +42,7 @@ const Container = styled.div`
   text-align: center;
   align-items: center;
   justify-content: center;
+  margin bottom- 10%;
 `;
 
 const TextContainer = styled.div`
@@ -56,7 +57,9 @@ const TextContainer = styled.div`
   min-height: 100px; /* 모바일 화면 전체에 꽉 채우기 */
   
   @media (max-width: 768px) {
+
     padding: 1rem 2rem;
+    width: 90vw;
   }
   animation: ${fadeIn} 1s ease-out;
 `;
@@ -103,5 +106,6 @@ const Reservation = styled.button`
   @media (max-width: 768px) {
     padding: 0.6rem 1.2rem;
     font-size: 6vw;
+    margin-bottom: 10%;
   }
 `;
