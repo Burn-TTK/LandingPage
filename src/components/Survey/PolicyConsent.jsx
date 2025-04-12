@@ -1,7 +1,5 @@
-// PolicyConsent.jsx - 개인정보 수집 동의 및 상세 안내 컴포넌트
 import React from "react";
 import styled from "styled-components";
-
 
 const PolicyConsent = ({ isOpen, setIsOpen, isAgreed, setIsAgreed }) => (
     <Container>
@@ -9,7 +7,7 @@ const PolicyConsent = ({ isOpen, setIsOpen, isAgreed, setIsAgreed }) => (
             <Checkbox
                 type="checkbox"
                 checked={isAgreed}
-                onChange={(e) => setIsAgreed(e.target.checked)} // ✅ 연결
+                onChange={(e) => setIsAgreed(e.target.checked)}
                 required
             />
             <ConsentText>
@@ -34,18 +32,18 @@ const PolicyConsent = ({ isOpen, setIsOpen, isAgreed, setIsAgreed }) => (
     </Container>
 );
 
-
 export default PolicyConsent;
 
-// 전체 컨테이너
+// ===== 스타일 =====
+
 const Container = styled.div`
     max-width: 36rem;
     margin-top: 10px;
-    font-size: 0.875rem;
+    font-size: clamp(13px, 2.8vw, 15px);  // 반응형 폰트
     color: #374151;
+    font-family: 'NanumSquare', sans-serif;
 `;
 
-// 체크박스와 텍스트 정렬
 const CheckboxWrapper = styled.div`
     display: flex;
     align-items: flex-start;
@@ -56,9 +54,11 @@ const Checkbox = styled.input`
     margin-top: 0.25rem;
 `;
 
-const ConsentText = styled.span``;
+const ConsentText = styled.span`
+    font-weight: 400;
+    font-size: clamp(13px, 3vw, 15px);
+`;
 
-// [자세히 보기] 버튼
 const ToggleButton = styled.button`
     margin-left: 1.5rem;
     color: #2563eb;
@@ -66,9 +66,11 @@ const ToggleButton = styled.button`
     background: none;
     border: none;
     cursor: pointer;
+    font-family: 'NanumSquare', sans-serif;
+    font-weight: 500;
+    font-size: clamp(13px, 3vw, 15px);
 `;
 
-// 상세 내용 컨테이너
 const PolicyDetail = styled.div`
     margin-left: 1.5rem;
     background-color: #f9fafb;
@@ -80,4 +82,10 @@ const PolicyDetail = styled.div`
 
 const DetailText = styled.p`
     margin-bottom: 0.5rem;
+    font-weight: 400;
+    font-size: clamp(13px, 3vw, 15px);
+
+    strong {
+        font-weight: 700;
+    }
 `;

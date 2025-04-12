@@ -1,7 +1,7 @@
-// Footer.jsx
 import React from "react";
 import styled from "styled-components";
 import GCSImage from "../assets/GCS.jpeg";
+
 const Footer = () => {
     return (
         <FooterWrapper>
@@ -48,10 +48,12 @@ const Footer = () => {
 
 export default Footer;
 
+// ===== 스타일 =====
+
 const FooterWrapper = styled.footer`
     padding: 40px 20px;
     color: #333;
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'NanumSquare', sans-serif;
 `;
 
 const ContentContainer = styled.div`
@@ -96,7 +98,7 @@ const Column = styled.div`
 
 const Title = styled.h4`
     font-size: 16px;
-    font-weight: bold;
+    font-weight: 700; /* Bold */
     margin-bottom: 12px;
     text-align: left;
 
@@ -107,6 +109,7 @@ const Title = styled.h4`
 
 const LinkItem = styled.div`
     font-size: 14px;
+    font-weight: 400; /* Regular */
     margin-bottom: 8px;
     cursor: pointer;
     transition: transform 0.2s ease;
@@ -142,6 +145,7 @@ const BottomRow = styled.div`
     color: #666;
     line-height: 1.6;
     text-align: center;
+    font-weight: 300; 
 `;
 
 const CompanyInfo = styled.p`
