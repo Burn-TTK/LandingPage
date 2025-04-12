@@ -1,4 +1,3 @@
-// StoreButtons.jsx - 앱스토어 & 구글플레이 다운로드 버튼
 import React from "react";
 import styled from "styled-components";
 
@@ -23,16 +22,22 @@ const StoreButtons = () => {
 
 export default StoreButtons;
 
-// 버튼 묶음 스타일
+// ===== 스타일 =====
+
 const ButtonWrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 1.5rem;
     margin-top: 20px;
+    flex-wrap: wrap;
+
+    @media (max-width: 480px) {
+        gap: 1rem;
+        margin-top: 12px;
+    }
 `;
 
-// 버튼 자체 스타일
 const StoreButton = styled.button`
     background: none;
     border: none;
@@ -40,14 +45,14 @@ const StoreButton = styled.button`
     cursor: pointer;
 `;
 
-// 이미지 크기 스타일
 const StoreImage = styled.img`
     display: block;
     height: auto;
-    max-height: 56px;
+    max-height: clamp(36px, 7vw, 56px);  // 반응형 크기
     width: auto;
-    transition: transform 0.3s ease;  
+    transition: transform 0.3s ease;
+
     &:hover {
-        transform: scale(1.08);      
+        transform: scale(1.08);
     }
 `;

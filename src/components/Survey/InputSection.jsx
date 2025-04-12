@@ -1,4 +1,3 @@
-// InputSection.jsx - 단일 입력창 컴포넌트 (라벨, 입력, 버튼 포함)
 import React, { useState, useRef } from "react";
 import styled from "styled-components";
 
@@ -8,90 +7,158 @@ const InputSection = ({
     disabled = false,
     type = "text",
     requireConsent = false,
-    isAgreed = true
+    isAgreed = true,
+    placeholder = "입력해주세요"
 }) => {
-    const [value, setValue] = useState("");     // 입력된 텍스트 값
-    const inputRef = useRef(null);              // input DOM 접근용
+    const [value, setValue] = useState("");
+    const [isFocused, setIsFocused] = useState(false);
+    const inputRef = useRef(null);
 
-    // 보내기 버튼 클릭 핸들러
     const handleSend = () => {
-        // 동의가 필수인데 아직 체크 안 했으면 → HTML 유효성 메시지 표시
         if (requireConsent && !isAgreed) {
             inputRef.current.setCustomValidity("개인정보 수집 및 이용에 동의해주세요.");
-            inputRef.current.reportValidity(); // 경고 메시지 띄움
+            inputRef.current.reportValidity();
             return;
         }
 
-        // 기존 경고 제거 (동의 체크 후 재전송할 때)
         inputRef.current.setCustomValidity("");
 
-        // 부모 컴포넌트에 입력값 전달 -> 서버로 전달
-        if (onSend) onSend(value);
+        if (value.trim() && onSend) {
+            onSend(value);
+            setValue("");
+        }
     };
 
-    // 전화번호 자동 하이픈 처리
     const formatPhoneNumber = (val) => {
-        const numbers = val.replace(/\D/g, ""); // 숫자만 남기기
+        const numbers = val.replace(/\D/g, "");
         if (numbers.length <= 3) return numbers;
         if (numbers.length <= 7) return numbers.replace(/(\d{3})(\d+)/, "$1-$2");
-        return numbers.replace(/(\d{3})(\d{4})(\d+)/, "$1-$2-$3");
+        return numbers.replace(/(\d{3})(\d{4})(\d+)/, "$1-$2-$3").slice(0, 13);
     };
 
-    // 입력 변화 시 처리
     const handleChange = (e) => {
         let val = e.target.value;
         if (type === "phone") {
-            val = formatPhoneNumber(val); // 전화번호 포맷 적용
+            val = formatPhoneNumber(val);
         }
         setValue(val);
     };
 
+    const handleKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            handleSend();
+        }
+    };
+
     return (
         <Wrapper>
-            <Paragraph>{label}</Paragraph>
-
-            <Section>
-                <Input
-                    ref={inputRef} //유효성 검사 메시지 수동제어
+            <Label>{label}</Label>
+            <InputGroup isFocused={isFocused}>
+                <StyledInput
+                    ref={inputRef}
                     type="text"
                     value={value}
                     onChange={handleChange}
                     disabled={disabled}
-                    required={requireConsent} // 동의 필요 시 유효성 검사 대상
+                    required={requireConsent}
+                    placeholder={placeholder}
+                    onFocus={() => setIsFocused(true)}
+                    onBlur={() => setIsFocused(false)}
+                    onKeyPress={handleKeyPress}
                 />
-                <button onClick={handleSend} disabled={disabled}>보내기</button>
-            </Section>
+                <SendButton
+                    onClick={handleSend}
+                    disabled={disabled || !value.trim()}
+                    hasValue={value.trim().length > 0}
+                >
+                    보내기
+                </SendButton>
+            </InputGroup>
         </Wrapper>
     );
 };
 
-
 export default InputSection;
 
-// 컴포넌트 전체 래퍼
+// ===== 스타일 =====
+
 const Wrapper = styled.div`
-    display : flex;
-    flex-direction: column;
-`;
-
-// 라벨 텍스트
-const Paragraph = styled.p`
-    font-size: 16px;
-    color: #333;
-    margin-top: 12px;  
-    margin-bottom: 0;  
-`;
-
-// 입력창+버튼 묶음
-const Section = styled.section`
     display: flex;
-    gap: 3px;
-    margin-top: 12px;
+    flex-direction: column;
+    padding: 16px 12px;
+    max-width: 600px;
+    font-family: 'NanumSquare', sans-serif;
+
 `;
 
-// 입력 필드
-const Input = styled.input`
+const Label = styled.label`
+    font-size: clamp(13px, 4vw, 16px);
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 10px;
+    transition: color 0.3s;
+`;
+
+const InputGroup = styled.div`
+    display: flex;
+    border-radius: 12px;
+    height: 48px;
+    
+    border: 1px solid ${props => props.isFocused ? '#F9D923' : '#e0e0e0'};
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: ${props => props.isFocused ? '0 0 0 3px rgba(249, 217, 35, 0.2)' : 'none'};
+`;
+
+const StyledInput = styled.input`
     flex: 1;
-    padding: 5px;
-    font-size: 16px;
+    padding: 0 16px;
+    font-size: clamp(14px, 4vw, 16px);
+    border: none;
+    outline: none;
+    background-color: #fff;
+    font-family: 'NanumSquare', sans-serif;
+
+    &::placeholder {
+        color: #bbb;
+        font-size: clamp(13px, 3.5vw, 15px);
+    }
+
+    &:disabled {
+        background-color: #f5f5f5;
+        cursor: not-allowed;
+    }
+`;
+
+const SendButton = styled.button`
+    padding: 0 22px;
+    height: 48px;
+    background: ${props => props.hasValue ? 'linear-gradient(135deg, #FFE15D, #F9D923)' : '#f0f0f0'};
+    color: ${props => props.hasValue ? '#333' : '#999'};
+    font-weight: 600;
+    font-size: clamp(13px, 3.5vw, 15px);
+    border: none;
+    cursor: ${props => props.disabled || !props.hasValue ? 'not-allowed' : 'pointer'};
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    font-family: 'NanumSquare', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+
+    &:hover:not(:disabled) {
+        background: ${props => props.hasValue ? 'linear-gradient(135deg, #F9D923, #F9D923)' : '#f0f0f0'};
+        color: ${props => props.hasValue ? '#222' : '#999'};
+    }
+
+    &:active:not(:disabled) {
+        transform: ${props => props.hasValue ? 'scale(0.98)' : 'none'};
+    }
+
+    &:disabled {
+        background: #f0f0f0;
+        color: #ccc;
+    }
 `;

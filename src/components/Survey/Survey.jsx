@@ -1,4 +1,3 @@
-// Survey.jsx - 설문 컴포넌트 메인 컨테이너
 import React, { useState } from "react";
 import styled from "styled-components";
 import InputSection from "./InputSection";
@@ -7,49 +6,123 @@ import StoreButtons from "./StoreButton";
 import axios from "axios";
 
 const Survey = () => {
-    const [isOpen, setIsOpen] = useState(false);                    // 개인정보동의 "자세히 보기" 토글 상태
-    const [isSecondEnabled, setIsSecondEnabled] = useState(false);  // 전화번호 입력창 활성화 여부
-    const [isAgreed, setIsAgreed] = useState(false);                // 개인정보 수집 동의 여부
+    const [isOpen, setIsOpen] = useState(false);
+    const [isSecondEnabled, setIsSecondEnabled] = useState(false);
+    const [isAgreed, setIsAgreed] = useState(false);
+    const [restaurantName, setRestaurantName] = useState("");
+
+    const handleRestaurantSubmit = (value) => {
+        setRestaurantName(value);
+        axios.post("http://localhost:5000/restaurant", { name: value });
+        setIsSecondEnabled(true);
+    };
+
+    const handlePhoneSubmit = (value) => {
+        axios.post("http://localhost:5000/phone", { phone: value });
+    };
 
     return (
-        <Wrapper>
-            <InputSection
-                label="미리 주문 체험을 하고싶은 식당을 입력하세요!!"
-                onSend={(value) => {
-                    axios.post("http://localhost:5000/restaurant", { name: value });
+        <SurveyContainer>
+            <SectionTitle>주문 체험 신청</SectionTitle>
 
-                    // 식당명 입력 시 전화번호 입력창 활성화
-                    setIsSecondEnabled(true);
-                }}
-            />
-            <InputSection
-                label="실제로 체험을 원하시면 전화번호 남겨주세요"
-                disabled={!isSecondEnabled}      // 식당 입력 전까지는 입력 칸 비활성화
-                type="phone"                     // 전화번호 입력 포맷 적용
-                requireConsent={true}            // Input이 개인정보 동의를 필요로 하냐?
-                isAgreed={isAgreed}              // 현재 동의 상태 전달
-                onSend={(value) => {
-                    // 전화번호 서버 전송
-                    axios.post("http://localhost:5000/phone", { phone: value });
-                }}
-            />
+            <FormContainer>
+                <InputSection
+                    label="미리 주문 체험을 하고싶은 식당을 입력하세요"
+                    placeholder="식당 이름 입력"
+                    onSend={handleRestaurantSubmit}
+                />
 
-            <PolicyConsent
-                isOpen={isOpen}             // "자세히 보기" 섹션이 열려 있는지 여부
-                setIsOpen={setIsOpen}
-                isAgreed={isAgreed}         // 개인정보 수집 동의 체크 여부 (체크박스 상태)
-                setIsAgreed={setIsAgreed}   // 체크박스 변경 시 호출할 상태 변경 함수
-            />
-            <StoreButtons />
-        </Wrapper>
+                {isSecondEnabled && (
+                    <SuccessMessage>
+                        <HighlightText>{restaurantName}</HighlightText>이(가) 등록되었습니다!
+                    </SuccessMessage>
+                )}
+
+                <ContactSection show={isSecondEnabled}>
+                    <InputSection
+                        label="연락 가능한 전화번호를 알려주세요"
+                        placeholder="010-0000-0000"
+                        disabled={!isSecondEnabled}
+                        type="phone"
+                        requireConsent={true}
+                        isAgreed={isAgreed}
+                        onSend={handlePhoneSubmit}
+                    />
+
+                    <PolicyConsent
+                        isOpen={isOpen}
+                        setIsOpen={setIsOpen}
+                        isAgreed={isAgreed}
+                        setIsAgreed={setIsAgreed}
+                    />
+                </ContactSection>
+            </FormContainer>
+
+            <StoreButtonContainer>
+                <StoreButtons />
+            </StoreButtonContainer>
+        </SurveyContainer>
     );
 };
 
-
 export default Survey;
 
-// Survey 전체 래퍼 스타일
-const Wrapper = styled.div`
+
+const SurveyContainer = styled.div`
     display: flex;
     flex-direction: column;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: clamp(1rem, 4vw, 2rem) 1rem;
+    font-family: 'NanumSquare', sans-serif;
+`;
+
+const SectionTitle = styled.h2`
+    font-size: clamp(1.2rem, 4vw, 1.5rem);
+    font-weight: 700;
+    color: #333;
+    text-align: center;
+    margin-bottom: clamp(1rem, 3vw, 1.5rem);
+`;
+
+const FormContainer = styled.div`
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    padding: clamp(0.5rem, 2vw, 1.5rem);
+    margin-bottom: clamp(1rem, 3vw, 2rem);
+`;
+
+const SuccessMessage = styled.div`
+    margin: 0.5rem 1rem 1.5rem;
+    padding: 0.75rem 1rem;
+    background-color: rgba(249, 217, 35, 0.15);
+    border-left: 3px solid #F9D923;
+    border-radius: 0 8px 8px 0;
+    color: #555;
+    font-size: clamp(0.85rem, 3vw, 1rem);
+    animation: fadeIn 0.5s ease;
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-5px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+`;
+
+const HighlightText = styled.span`
+    font-weight: 600;
+    color: #333;
+`;
+
+const ContactSection = styled.div`
+    margin-top: 1rem;
+    opacity: ${props => props.show ? 1 : 0};
+    max-height: ${props => props.show ? '500px' : '0'};
+    overflow: hidden;
+    transition: all 0.5s ease;
+`;
+
+const StoreButtonContainer = styled.div`
+    margin-top: 1rem;
 `;

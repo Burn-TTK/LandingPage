@@ -4,13 +4,16 @@
   background-color: #fff;
 }
 
-
 body {
   margin: 0;
-  display: flex;
-  justify-content: center;
   min-height: 100vh;
 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  font-family: sans-serif;
 }
 
 p {

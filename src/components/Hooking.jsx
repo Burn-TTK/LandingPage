@@ -1,20 +1,10 @@
+// HookingModern.jsx
 import React from "react";
 import styled, { keyframes } from "styled-components";
+import '../styles/fonts.css';
 
-// 애니메이션 정의
-const fadeIn = keyframes`
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-`;
 
-const pulse = keyframes`
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
-`;
-
-const Hooking = () => {
-  // 버튼 클릭 시 Survey 섹션으로 스크롤 이동하는 함수
+const HookingModern = () => {
   const scrollToSurvey = () => {
     const surveySection = document.getElementById("surveySection");
     if (surveySection) {
@@ -24,84 +14,116 @@ const Hooking = () => {
 
   return (
     <Container>
-      <TextContainer>
-        <Text>"사장님 언제 나와요?"</Text>
-        <SemiText>더이상 물어보지 마세요!</SemiText>
-      </TextContainer>
-      <Reservation onClick={scrollToSurvey}>
-        미리주문하고 싶은 식당 신청하기
-      </Reservation>
+      <Wrapper>
+        <TextSection>
+          <MainHeadline>"사장님 언제 나와요?"</MainHeadline>
+          <SubHeadline>더이상 물어보지 마세요!</SubHeadline>
+        </TextSection>
+
+        <ActionSection>
+          <CTAButton onClick={scrollToSurvey}>
+            미리주문하고 싶은 식당 신청하기
+          </CTAButton>
+        </ActionSection>
+
+
+      </Wrapper>
     </Container>
   );
 };
 
-export default Hooking;
+export default HookingModern;
 
-// styled-components를 이용한 스타일 정의
+const fadeIn = keyframes`
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+`;
+
 const Container = styled.div`
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-`;
-
-const TextContainer = styled.div`
-  margin-bottom: 1.5rem;
-  margin-top: 10vw;
+  font-family: 'NanumSquare', sans-serif;
   display: flex;
-  border-radius: 30px;
   flex-direction: column;
-  
-  padding: 2rem 4rem;
-  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
-  min-height: 100px; /* 모바일 화면 전체에 꽉 채우기 */
-  
-  @media (max-width: 768px) {
-    padding: 1rem 2rem;
-  }
-  animation: ${fadeIn} 1s ease-out;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  box-sizing: border-box;
 `;
 
-const Text = styled.h1`
-  font-size: 3rem;
-  color: #333;
-  margin: 0;
-  animation: ${fadeIn} 1.5s ease-out;
-  
-  @media (max-width: 768px) {
-    font-size: 8vw;
+const Wrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+`;
+
+const TextSection = styled.div`
+  background-color: #fff;
+  border-radius: 24px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+  animation: ${fadeIn} 0.6s ease-out forwards;
+`;
+
+const MainHeadline = styled.h1`
+  font-size: 2rem;
+  font-weight: 800;
+  color: #222;
+  margin: 0 0 0.75rem 0;
+  line-height: 1.3;
+
+  @media (max-width: 480px) {
+    font-size: 1.75rem;
   }
 `;
 
-const SemiText = styled.h2`
-  font-size: 1.5rem;
+const SubHeadline = styled.p`
+  font-size: 1.25rem;
+  font-weight: 500;
   color: #555;
-  animation: ${fadeIn} 2s ease-out;
-  
-  @media (max-width: 768px) {
-    font-size: 5vw;
+  margin: 0;
+
+  @media (max-width: 480px) {
+    font-size: 1.1rem;
   }
 `;
 
-const Reservation = styled.button`
-  background: linear-gradient(45deg, #ff8a00, #e52e71);
-  color: #fff;
+const ActionSection = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  animation: ${fadeIn} 0.6s ease-out forwards;
+  animation-delay: 0.2s;
+`;
+
+const CTAButton = styled.button`
+  background: linear-gradient(135deg, #FFE15D, #F9D923);
+  color: #222;
+  font-weight: 600;
+  font-size: 1rem;
   border: none;
   border-radius: 50px;
-  padding: 2rem 3rem;
-  font-size: 1.2rem;
+  padding: 1rem 2rem;
+  width: 100%;
   cursor: pointer;
-  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-  animation: ${pulse} 2s infinite;
-  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
-  
-  &:hover {
-    background: linear-gradient(45deg, #e52e71, #ff8a00);
-    transform: scale(1.05);
-    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 25px rgba(249, 217, 35, 0.25);
+  text-align: center;
+
+  &:hover, &:focus {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(249, 217, 35, 0.35);
   }
-  
-  @media (max-width: 768px) {
-    padding: 0.6rem 1.2rem;
-    font-size: 6vw;
+
+  &:active {
+    transform: translateY(1px);
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.95rem;
+    padding: 0.9rem 1.5rem;
   }
 `;
+

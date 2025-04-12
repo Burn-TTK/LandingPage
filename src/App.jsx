@@ -8,7 +8,6 @@ import Footer from "./components/Footer";
 function App() {
   return (
     <Page>
-
       <Hooking />
       <Information />
       <Survey />
@@ -21,9 +20,5 @@ export default App;
 
 const Page = styled.div`
   margin: 0;
-  color: black;
-`;
-
-const IU = styled.p`
   color: black;
 `;
