@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import GCSImage from "../assets/GCS.jpeg";
+import GCSImage from "../assets/GCS.png";
 
 const Footer = () => {
     return (
@@ -65,21 +65,22 @@ const ContentContainer = styled.div`
     flex-wrap: wrap;
 
     @media (max-width: 768px) {
-        justify-content: center;
-        gap: 1.5rem;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
     }
 `;
 
 const LeftColumnGroup = styled.div`
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     gap: 40px;
     flex: 1;
-    min-width: 600px;
+    width: 100%;
 
     @media (max-width: 768px) {
-        justify-content: space-around;
-        min-width: 100%;
+        grid-template-columns: repeat(2, 1fr); /* 2개씩 2줄 */
+        gap: 24px;
     }
 `;
 
@@ -88,28 +89,24 @@ const Column = styled.div`
     flex-direction: column;
     min-width: 120px;
     max-width: 150px;
-    flex: 1;
     word-break: keep-all;
+    text-align: left;
 
     @media (max-width: 768px) {
         align-items: center;
+        text-align: center;
     }
 `;
 
 const Title = styled.h4`
     font-size: 16px;
-    font-weight: 700; /* Bold */
+    font-weight: 700;
     margin-bottom: 12px;
-    text-align: left;
-
-    @media (max-width: 768px) {
-        text-align: center;
-    }
 `;
 
 const LinkItem = styled.div`
     font-size: 14px;
-    font-weight: 400; /* Regular */
+    font-weight: 400;
     margin-bottom: 8px;
     cursor: pointer;
     transition: transform 0.2s ease;
@@ -117,18 +114,13 @@ const LinkItem = styled.div`
     &:hover {
         transform: scale(1.05);
     }
-
-    @media (max-width: 768px) {
-        text-align: center;
-    }
 `;
 
 const ImageContainer = styled.div`
-    width: 100px;
+    width: 120px;
 
     @media (max-width: 768px) {
-        width: 60px;
-        margin-top: 20px;
+        width: 100px;
     }
 
     img {
