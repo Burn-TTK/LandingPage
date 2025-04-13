@@ -44,12 +44,6 @@ const InputSection = ({
         setValue(val);
     };
 
-    const handleKeyPress = (e) => {
-        if (e.key === 'Enter') {
-            handleSend();
-        }
-    };
-
     return (
         <Wrapper>
             <Label>{label}</Label>
@@ -64,7 +58,6 @@ const InputSection = ({
                     placeholder={placeholder}
                     onFocus={() => setIsFocused(true)}
                     onBlur={() => setIsFocused(false)}
-                    onKeyPress={handleKeyPress}
                 />
                 <SendButton
                     onClick={handleSend}
