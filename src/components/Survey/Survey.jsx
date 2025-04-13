@@ -71,7 +71,7 @@ export default Survey;
 const SurveyContainer = styled.div`
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 90vw;
     max-width: 600px;
     margin: 0 auto;
     padding: clamp(1rem, 4vw, 2rem) 1rem;

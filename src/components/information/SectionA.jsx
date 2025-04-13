@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import styled, { css } from "styled-components";
-import ui from "../../assets/UI_1.jpg";
+import ui from "../../assets/UI_3.png";
 
 
 const SectionA = () => {
@@ -29,7 +29,11 @@ const SectionA = () => {
     <SectionContainer ref={ref} $visible={visible}>
     <Heading>아직도 전화주문 하세요?</Heading>
       <TextContainer>
-        <SubHeading>이제는 앱으로 간편하게!</SubHeading>
+        <SubHeading>이제는 쁘레로 간편하게!</SubHeading>
+        <Des>
+          원하는 식당 지도에서 찾고<br/>
+          걸어가면서 주문하자!
+        </Des>
       </TextContainer>
       <ImageWrapper>
         <img src={ui} alt="모바일 UI 예시 이미지" />
@@ -62,6 +66,9 @@ const SectionContainer = styled.div`
     flex-direction: row;  /* 열이 아닌 행 배치를 유지 */
     flex-wrap: wrap;      /* 공간이 부족하면 줄바꿈을 허용 */
     padding: 2rem;
+    margin-left: 1%;
+    margin-right: 1%;
+
 
   }
 `;
@@ -70,7 +77,7 @@ const Heading = styled.h2`
   font-size: 2.8rem;
   color: #222;
   font-weight: 800;
-  margin-bottom: 1rem;
+  margin-bottom: -1rem;
   letter-spacing: -1px;
 
   @media (max-width: 768px) {
@@ -79,6 +86,7 @@ const Heading = styled.h2`
 `;
 
 const TextContainer = styled.div`
+  margin-top: 15%;
   flex: 1;
   min-width: 45%;
 `;
@@ -90,19 +98,29 @@ const SubHeading = styled.h3`
   line-height: 1.4;
 
   @media (max-width: 768px) {
-    font-size: 3vw;
+    font-size: 1.0rem;
   }
 `;
 
+const Des = styled.div`
+  @media (max-width: 768px) {
+    color: #555;
+    margin-top: 0.8rem;
+    font-size: 3.5vw;
+    line-height: 1.4;
+    font-size: 0.9rem;
+  }
+`
+
 const ImageWrapper = styled.div`
   flex: 1;
-  min-width: 45%;
+  min-width: 55%;
   width: 280px;
   height: 280px;
 
   border-radius: 10%;
-  background-color: #fafafa;
-  box-shadow: 0 4px 10px rgba(22, 20, 20, 0.1);
+  background-color: rgba(0, 0, 0, 0); /* 명시적으로 투명하게 지정 */
+  // box-shadow: 0 4px 10px rgba(22, 20, 20, 0.1);
   overflow: hidden; /* 내부 이미지가 원형 영역을 벗어나지 않도록 처리 */
   display: flex;
   align-items: center;
@@ -110,14 +128,14 @@ const ImageWrapper = styled.div`
 
   img {
     width: 100%;
-    height: 100%;
+    height: 77.5%;
     object-fit: cover; /* 이미지의 비율을 유지하며 채움 */
     /* border-radius는 부모의 overflow: hidden으로 처리되므로 별도 설정 불필요 */
   }
 
   @media (max-width: 768px) {
-    width: 200px;
-    height: 200px;
+    width: 60vw;
+    height: 40vh;
     margin: 0 auto; /* 중앙 정렬 */
   }
 `;

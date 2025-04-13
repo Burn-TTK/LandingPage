@@ -1,7 +1,17 @@
 import React, { useRef, useState, useEffect } from "react";
-import styled, { css } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 import food from "../../assets/Food_1.jpg"
 
+const fadeInUp = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
 
 const SectionB = () => {
   const ref = useRef();
@@ -25,18 +35,22 @@ const SectionB = () => {
 
   return (
     <SectionContainer ref={ref} visible={visible}>
-      <ImageWrapper>
-        <img src={food} alt="모바일 UI 예시 이미지" />
-      </ImageWrapper>
-      <TextContainer>
-        <Heading>도착해서 바로먹자!</Heading>
+      <Heading>도착해서 바로먹자!</Heading>
+      <Content>
+        <ImageWrapper>
+          <img src={food} alt="모바일 UI 예시 이미지" />
+        </ImageWrapper>
+        <TextContainer>
         <Description>
-          사전예약 서비스를 이용하면 주문 시 대기 시간을 획기적으로 줄일 수 있습니다.
-          미리 주문해두면 식당에서는 고객 도착 전에 음식을 준비하여,
-          도착하자마자 따끈한 음식을 바로 즐길 수 있죠. 신선한 재료와 빠른
-          서비스로 고객 만족도를 높이고, 효율적인 운영이 가능해집니다.
+          
+          예약하고 도착하면, <br/>
+          기다림 없이 바로 식사!<br />
+          <br/>
+          쁘레로 시간 절약하고, <br/>
+          여유롭게 커피 마시자!<br />
         </Description>
-      </TextContainer>
+        </TextContainer>
+      </Content>
     </SectionContainer>
   );
 };
@@ -45,8 +59,7 @@ export default SectionB;
 
 const SectionContainer = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  
   padding: 4rem 6rem;
 //   background: linear-gradient(135deg, #f8f8f8 0%, #ffffff 100%);
   opacity: 0;
@@ -58,14 +71,36 @@ const SectionContainer = styled.div`
     css`
       opacity: 1;
       transform: translateY(0);
+      animation: ${fadeInUp} 0.6s ease-out forwards;
     `}
   
   @media (max-width: 768px) {
-    flex-direction: column-reverse;
+    flex-direction: column;
     padding: 2rem;
     text-align: center;
     gap: 2rem;
+    margin-top: -3rem;
   }
+`;
+
+const Heading = styled.h2`
+  font-size: 2.8rem;
+  color: #222;
+  font-weight: 800;
+  margin-bottom: 0rem;
+  letter-spacing: -1px;
+  text-align: right; /* 모바일에서도 오른쪽 정렬 유지 */
+  
+  @media (max-width: 768px) {
+    font-size: 8vw;
+    margin-right: 2%;
+  }
+`;
+
+const Content = styled.div`
+    display: flex;
+    flex-direction: row;
+    gap: 3vw;
 `;
 
 const TextContainer = styled.div`
@@ -77,18 +112,7 @@ const TextContainer = styled.div`
   }
 `;
 
-const Heading = styled.h2`
-  font-size: 2.8rem;
-  color: #222;
-  font-weight: 800;
-  margin-bottom: 1rem;
-  letter-spacing: -1px;
-  text-align: right; /* 모바일에서도 오른쪽 정렬 유지 */
-  
-  @media (max-width: 768px) {
-    font-size: 8vw;
-  }
-`;
+
 
 const Description = styled.p`
   font-size: 1.6rem;
@@ -96,7 +120,8 @@ const Description = styled.p`
   line-height: 1.5;
   
   @media (max-width: 768px) {
-    font-size: 1.4rem;
+    font-size: 1.0rem;
+    text-align: left;
   }
 `;
 

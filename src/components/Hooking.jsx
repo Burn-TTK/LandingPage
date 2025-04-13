@@ -49,6 +49,7 @@ const Container = styled.div`
   margin: 0 auto;
   padding: 2rem 1.5rem;
   box-sizing: border-box;
+  width: 100vw;
 `;
 
 const Wrapper = styled.div`
