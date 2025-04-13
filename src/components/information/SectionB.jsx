@@ -38,7 +38,7 @@ const SectionB = () => {
       <Heading>도착해서 바로먹자!</Heading>
       <Content>
         <ImageWrapper>
-          <img src={food} alt="모바일 UI 예시 이미지" />
+          <img src={food} />
         </ImageWrapper>
         <TextContainer>
         <Description>
@@ -61,7 +61,6 @@ const SectionContainer = styled.div`
   display: flex;
   
   padding: 4rem 6rem;
-//   background: linear-gradient(135deg, #f8f8f8 0%, #ffffff 100%);
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
@@ -89,7 +88,7 @@ const Heading = styled.h2`
   font-weight: 800;
   margin-bottom: 0rem;
   letter-spacing: -1px;
-  text-align: right; /* 모바일에서도 오른쪽 정렬 유지 */
+  text-align: right; 
   
   @media (max-width: 768px) {
     font-size: 8vw;
@@ -135,7 +134,7 @@ const ImageWrapper = styled.div`
   border-radius: 10%;
   background-color: #fafafa;
   box-shadow: 0 4px 10px rgba(22, 20, 20, 0.1);
-  overflow: hidden; /* 내부 이미지가 원형 영역을 벗어나지 않도록 처리 */
+  overflow: hidden; 
   display: flex;
   align-items: center;
   justify-content: center;
@@ -143,13 +142,12 @@ const ImageWrapper = styled.div`
   img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* 이미지의 비율을 유지하며 채움 */
-    /* border-radius는 부모의 overflow: hidden으로 처리되므로 별도 설정 불필요 */
+    object-fit: cover; 
   }
 
   @media (max-width: 768px) {
     width: 90vw;
     height: 200px;
-    margin: 0 auto; /* 중앙 정렬 */
+    margin: 0 auto; 
   }
 `;

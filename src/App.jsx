@@ -10,7 +10,8 @@ function App() {
     <Page>
       <Hooking />
       <Information />
-      <section id="surveySection"/>
+      {/* 자동 스크롤 */}
+      <section id="surveySection"/> 
       <Survey />
       <Footer />
     </Page>
@@ -22,5 +23,5 @@ export default App;
 const Page = styled.div`
   margin: 0;
   color: black;
-  background: linear-gradient(to bottom, #ffffff, #fff6b4);
+  background: linear-gradient(to bottom, #ffffff, #fff6b4); //배경
 `;

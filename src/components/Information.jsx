@@ -18,6 +18,5 @@ export default Information;
 const Container = styled.div`
     display: flex;
     flex-direction: column;
-    // background: #f0f0f0;
     margin-left: 1.5%;
 `;

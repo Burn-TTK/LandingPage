@@ -9,11 +9,12 @@ const SectionA = () => {
 
   useEffect(() => {
     // IntersectionObserver를 사용하여 섹션이 뷰포트에 들어오면 visible 상태를 true로 변경합니다.
+    // 스크롤 화면 노출
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setVisible(true);
-          observer.unobserve(entry.target); // 한 번 나타나면 더 이상 감시하지 않습니다.
+          observer.unobserve(entry.target); // 1회성 
         }
       },
       { threshold: 0.3 } // 30% 이상 노출 시 trigger
@@ -25,7 +26,6 @@ const SectionA = () => {
   }, []);
 
   return (
-    // `$visible` prop을 전달하여 styled-components에서만 사용하고 실제 DOM에는 전달되지 않습니다.
     <SectionContainer ref={ref} $visible={visible}>
     <Heading>아직도 전화주문 하세요?</Heading>
       <TextContainer>
@@ -36,7 +36,7 @@ const SectionA = () => {
         </Des>
       </TextContainer>
       <ImageWrapper>
-        <img src={ui} alt="모바일 UI 예시 이미지" />
+        <img src={ui} />
       </ImageWrapper>
     </SectionContainer>
   );
@@ -44,17 +44,14 @@ const SectionA = () => {
 
 export default SectionA;
 
-// 스타일용 컴포넌트: `$visible` prop은 DOM에 전달되지 않습니다.
 const SectionContainer = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 4rem 6rem;
-//   background: linear-gradient(135deg, #fff 0%, #f9f9f9 25%);
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 
-  /* $visible prop이 true이면 opacity와 transform을 변경하여 fade in/up 효과를 나타냅니다. */
   ${({ $visible }) =>
     $visible &&
     css`
@@ -63,8 +60,8 @@ const SectionContainer = styled.div`
     `}
 
   @media (max-width: 768px) {
-    flex-direction: row;  /* 열이 아닌 행 배치를 유지 */
-    flex-wrap: wrap;      /* 공간이 부족하면 줄바꿈을 허용 */
+    flex-direction: row; 
+    flex-wrap: wrap;      
     padding: 2rem;
     margin-left: 1%;
     margin-right: 1%;
@@ -119,9 +116,8 @@ const ImageWrapper = styled.div`
   height: 280px;
 
   border-radius: 10%;
-  background-color: rgba(0, 0, 0, 0); /* 명시적으로 투명하게 지정 */
-  // box-shadow: 0 4px 10px rgba(22, 20, 20, 0.1);
-  overflow: hidden; /* 내부 이미지가 원형 영역을 벗어나지 않도록 처리 */
+  background-color: rgba(0, 0, 0, 0); 
+  overflow: hidden; 
   display: flex;
   align-items: center;
   justify-content: center;
@@ -129,13 +125,12 @@ const ImageWrapper = styled.div`
   img {
     width: 100%;
     height: 77.5%;
-    object-fit: cover; /* 이미지의 비율을 유지하며 채움 */
-    /* border-radius는 부모의 overflow: hidden으로 처리되므로 별도 설정 불필요 */
+    object-fit: cover; 
   }
 
   @media (max-width: 768px) {
     width: 60vw;
     height: 40vh;
-    margin: 0 auto; /* 중앙 정렬 */
+    margin: 0 auto; 
   }
 `;

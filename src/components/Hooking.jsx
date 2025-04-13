@@ -1,10 +1,9 @@
-// HookingModern.jsx
 import React from "react";
 import styled, { keyframes } from "styled-components";
 import '../styles/fonts.css';
 
 
-const HookingModern = () => {
+const Hooking = () => {
   const scrollToSurvey = () => {
     const surveySection = document.getElementById("surveySection");
     if (surveySection) {
@@ -32,7 +31,7 @@ const HookingModern = () => {
   );
 };
 
-export default HookingModern;
+export default Hooking;
 
 const fadeIn = keyframes`
   from { opacity: 0; transform: translateY(20px); }
