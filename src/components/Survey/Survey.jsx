@@ -33,10 +33,18 @@ const Survey = () => {
             <FormContainer>
                 {/* 식당 입력 영역 */}
                 <InputSection
-                    label="미리 주문 체험을 하고싶은 식당을 입력하세요"
+                    label={
+                        <>
+                            미리 주문 체험을 하고싶은 식당을 입력하세요<br />
+                            <span style={{ fontSize: "0.75rem", color: "#888" }}>
+                                ex) 배스킨라빈스 강남대로점
+                            </span>
+                        </>
+                    }
                     placeholder="식당 이름 입력"
                     onSend={handleRestaurantSubmit}
                 />
+
 
                 {/* 식당 등록 완료 메시지 */}
                 {isSecondEnabled && (
@@ -146,22 +154,22 @@ const ContactSection = styled.div`
     transition: all 0.5s ease;
 `;
 
-// 전화번호 제출 완료 메시지
+
 const PhoneSuccessMessage = styled.div`
-    margin-top: 1rem;
+    margin: 0.5rem 1rem 1.5rem;
     padding: 0.75rem 1rem;
     background-color: rgba(100, 200, 100, 0.1);
     border-left: 3px solid #28a745;
     border-radius: 0 8px 8px 0;
     color: #2e7d32;
-    font-size: clamp(0.9rem, 3vw, 1rem);
+    font-size: clamp(0.85rem, 3vw, 1rem);
     animation: fadeIn 0.5s ease;
 
     @media (max-width: 480px) {
-        padding: 1rem;
-        font-size: 1rem;
-        margin-top: 1rem;
-    }
+            padding: 1rem;
+            font-size: 1rem;
+            margin-top: 1rem;
+        }
 
     @keyframes fadeIn {
         from { opacity: 0; transform: translateY(-5px); }
