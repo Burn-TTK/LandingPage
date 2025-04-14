@@ -94,6 +94,7 @@ const SectionContainer = styled.div`
     padding: 4rem 2rem;
     margin: 3rem 1rem;
     border-radius: 12px;
+    margin-top: -20%;
   }
 `;
 
