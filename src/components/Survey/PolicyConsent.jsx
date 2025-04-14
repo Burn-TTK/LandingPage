@@ -1,10 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 
-const PolicyConsent = ({ isOpen, setIsOpen }) => (
+const PolicyConsent = ({ isOpen, setIsOpen, isAgreed, setIsAgreed }) => (
     <Container>
         <CheckboxWrapper>
-            <Checkbox type="checkbox" required />
+            <Checkbox
+                type="checkbox"
+                checked={isAgreed}
+                onChange={(e) => setIsAgreed(e.target.checked)}
+                required
+            />
             <ConsentText>
                 위 내용을 확인하였으며 개인정보 수집 및 이용에 동의합니다.
             </ConsentText>
@@ -29,11 +34,14 @@ const PolicyConsent = ({ isOpen, setIsOpen }) => (
 
 export default PolicyConsent;
 
+// ===== 스타일 =====
+
 const Container = styled.div`
     max-width: 36rem;
     margin-top: 10px;
-    font-size: 0.875rem;
+    font-size: clamp(13px, 2.8vw, 15px);  // 반응형 폰트
     color: #374151;
+    font-family: 'NanumSquare', sans-serif;
 `;
 
 const CheckboxWrapper = styled.div`
@@ -46,7 +54,10 @@ const Checkbox = styled.input`
     margin-top: 0.25rem;
 `;
 
-const ConsentText = styled.span``;
+const ConsentText = styled.span`
+    font-weight: 400;
+    font-size: clamp(13px, 3vw, 15px);
+`;
 
 const ToggleButton = styled.button`
     margin-left: 1.5rem;
@@ -55,6 +66,9 @@ const ToggleButton = styled.button`
     background: none;
     border: none;
     cursor: pointer;
+    font-family: 'NanumSquare', sans-serif;
+    font-weight: 500;
+    font-size: clamp(13px, 3vw, 15px);
 `;
 
 const PolicyDetail = styled.div`
@@ -68,4 +82,10 @@ const PolicyDetail = styled.div`
 
 const DetailText = styled.p`
     margin-bottom: 0.5rem;
+    font-weight: 400;
+    font-size: clamp(13px, 3vw, 15px);
+
+    strong {
+        font-weight: 700;
+    }
 `;

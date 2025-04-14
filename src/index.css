@@ -1,17 +1,26 @@
+@font-face {
+	font-family: "nanumfont";
+	src: url(./fonts/NanumSquareNeo-eHv.ttf);
+
+}
+
 :root {
   line-height: 1.5;
   color: #111;
   background-color: #fff;
+  --font-namufont: "namufont"
 }
-
 
 body {
   margin: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   min-height: 100vh;
 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  font-family: sans-serif;
 }
 
 p {
