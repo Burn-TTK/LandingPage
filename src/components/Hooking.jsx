@@ -59,16 +59,13 @@ const Wrapper = styled.div`
 `;
 
 const TextSection = styled.div`
-  background-color: #fff;
-  border-radius: 24px;
   padding: 2rem;
   text-align: center;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
   animation: ${fadeIn} 0.6s ease-out forwards;
 `;
 
 const MainHeadline = styled.h1`
-  font-size: 2rem;
+  font-size: 5rem;
   font-weight: 800;
   color: #222;
   margin: 0 0 0.75rem 0;
