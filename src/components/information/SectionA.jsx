@@ -29,7 +29,13 @@ const SectionA = () => {
     <SectionContainer ref={ref} $visible={visible}>
       <ContentWrapper>
         <TextBlock>
-          <Heading>아직도 전화주문 하세요?</Heading>
+          <Heading>
+            아직도 전화로
+            <br />
+            <span style={{ marginTop: '1.0rem', display: 'inline-block' }}>
+              미리주문 하세요?
+            </span>
+          </Heading>
           <SubHeading>이제는 쁘레로 간편하게!</SubHeading>
           <Description>
             원하는 식당 지도에서 찾고<br />
@@ -113,7 +119,6 @@ const Heading = styled.h2`
   letter-spacing: -1px;
   line-height: 1.1;
   position: relative;
-  
   &::after {
     content: '';
     display: block;

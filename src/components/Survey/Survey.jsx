@@ -36,8 +36,8 @@ const Survey = () => {
                     label={
                         <>
                             미리 주문 체험을 하고싶은 식당을 입력하세요<br />
-                            <span style={{ fontSize: "0.75rem", color: "#888" }}>
-                                ex) 배스킨라빈스 강남대로점
+                            <span style={{ fontSize: "0.75rem", color: "black", fontWeight: 500 }}>
+                                ex) 백소점 역삼역점
                             </span>
                         </>
                     }
@@ -56,7 +56,11 @@ const Survey = () => {
                 {/* 전화번호 입력 영역 (식당 입력 후에만 노출) */}
                 <ContactSection show={isSecondEnabled}>
                     <InputSection
-                        label="실제로 '미리주문'서비스를 체험하고 싶다면 번호를 남겨주세요"
+                        label={
+                            <strong style={{ fontWeight: 700, fontSize: "1rem", color: "#222" }}>
+                                실제로 '미리주문' 서비스를 체험하고 싶다면 !!!!!! <br /> 번호를 남겨주세요. 연락 드릴게요
+                            </strong>
+                        }
                         placeholder="010-0000-0000"
                         disabled={!isSecondEnabled}
                         type="phone"

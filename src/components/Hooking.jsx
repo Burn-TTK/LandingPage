@@ -111,19 +111,34 @@ const CTAButton = styled.button`
   transition: all 0.3s ease;
   box-shadow: 0 10px 25px rgba(249, 217, 35, 0.25);
   text-align: center;
+  animation: pulse 2.5s ease-in-out infinite;
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     transform: translateY(-3px);
     box-shadow: 0 12px 30px rgba(249, 217, 35, 0.35);
   }
 
   &:active {
-    transform: translateY(1px);
+    transform: translateY(1px) scale(0.98);
   }
 
   @media (max-width: 480px) {
     font-size: 0.95rem;
     padding: 0.9rem 1.5rem;
   }
+
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
 `;
+
 
