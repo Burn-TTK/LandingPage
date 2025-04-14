@@ -33,10 +33,18 @@ const Survey = () => {
             <FormContainer>
                 {/* 식당 입력 영역 */}
                 <InputSection
-                    label="미리 주문 체험을 하고싶은 식당을 입력하세요"
+                    label={
+                        <>
+                            미리 주문 체험을 하고싶은 식당을 입력하세요<br />
+                            <span style={{ fontSize: "0.75rem", color: "#888" }}>
+                                ex) 배스킨라빈스 강남대로점
+                            </span>
+                        </>
+                    }
                     placeholder="식당 이름 입력"
                     onSend={handleRestaurantSubmit}
                 />
+
 
                 {/* 식당 등록 완료 메시지 */}
                 {isSecondEnabled && (
