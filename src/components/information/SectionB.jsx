@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import styled, { css, keyframes } from "styled-components";
-import food from "../../assets/Food_1.jpg"
+import food from "../../assets/Food_3.png"
 
 const fadeInUp = keyframes`
   from {
@@ -79,6 +79,7 @@ const SectionContainer = styled.div`
     text-align: center;
     gap: 2rem;
     margin-top: -3rem;
+    background: linear-gradient(to bottom, #1a1a1a, #fff6b4);
   }
 `;
 
@@ -93,6 +94,7 @@ const Heading = styled.h2`
   @media (max-width: 768px) {
     font-size: 8vw;
     margin-right: 2%;
+    color: white;
   }
 `;
 
@@ -121,6 +123,7 @@ const Description = styled.p`
   @media (max-width: 768px) {
     font-size: 1.0rem;
     text-align: left;
+    color: white;
   }
 `;
 
@@ -132,22 +135,27 @@ const ImageWrapper = styled.div`
   height: 280px;
 
   border-radius: 10%;
-  background-color: #fafafa;
-  box-shadow: 0 4px 10px rgba(22, 20, 20, 0.1);
+
   overflow: hidden; 
   display: flex;
   align-items: center;
   justify-content: center;
+  
 
   img {
     width: 100%;
-    height: 100%;
+    height: 90%;
     object-fit: cover; 
+  }
+
+  img:hover {
+    transform: scale(1.05); /* Slight zoom effect on hover */
   }
 
   @media (max-width: 768px) {
     width: 90vw;
     height: 200px;
     margin: 0 auto; 
+    margin-bott
   }
 `;
