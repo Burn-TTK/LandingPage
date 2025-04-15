@@ -38,8 +38,8 @@ const Footer = () => {
 
             <BottomRow>
                 <CompanyInfo>
-                    가천대학교 GCS 6RL 팀 번뜩 | 경기 성남시 수정구 성남대로 1342 AI관 6층<br />
-                    010-8596-3705 | junu120707@gachon.ac.kr |
+                    가천대학교 GCS 6기 팀 번뜩 | 경기 성남시 수정구 성남대로 1342 AI관 6층<br />
+                    본 페이지는 사전예약을 위한 페이지 입니다.
                 </CompanyInfo>
             </BottomRow>
         </FooterWrapper>
