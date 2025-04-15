@@ -15,13 +15,13 @@ const Survey = () => {
     // 식당 이름 전송 핸들러
     const handleRestaurantSubmit = (value) => {
         setRestaurantName(value); // 입력한 이름 저장
-        axios.post("http://localhost:5000/restaurant", { name: value });
+        axios.post("https://landingpage-back.onrender.com/restaurant", { name: value });
         setIsSecondEnabled(true); // 전화번호 입력 영역 활성화
     };
 
     // 전화번호 전송 핸들러
     const handlePhoneSubmit = (value) => {
-        axios.post("http://localhost:5000/phone", { phone: value });
+        axios.post("https://landingpage-back.onrender.com/phone", { phone: value });
         setPhoneSubmitted(true); // 완료 메시지 표시
         setIsOpen(false); // 개인정보 동의창 자동 닫기
     };
@@ -37,7 +37,7 @@ const Survey = () => {
                         <>
                             미리 주문 체험을 하고싶은 식당을 입력하세요<br />
                             <span style={{ fontSize: "0.75rem", color: "black", fontWeight: 500 }}>
-                                ex) 백소점 역삼역점
+                                ex) 백소정 역삼역점
                             </span>
                         </>
                     }
