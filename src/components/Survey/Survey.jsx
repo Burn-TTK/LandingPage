@@ -57,9 +57,10 @@ const Survey = () => {
                 <ContactSection show={isSecondEnabled}>
                     <InputSection
                         label={
-                            <strong style={{ fontWeight: 700, fontSize: "1rem", color: "#222" }}>
-                                실제로 '미리주문' 서비스를 체험하고 싶다면 !!!!!! <br /> 번호를 남겨주세요. 연락 드릴게요
-                            </strong>
+                            <div style={{ fontSize: "1rem", color: "#222" }}>
+                                <strong><u>실제로 '미리주문' 서비스를 체험해보고 싶다면</u></strong><br />
+                                번호를 남겨주세요. 연락 드릴게요.
+                            </div>
                         }
                         placeholder="010-0000-0000"
                         disabled={!isSecondEnabled}
